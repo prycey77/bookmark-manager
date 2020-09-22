@@ -4,6 +4,12 @@ class Bookmark
     
   end
   def self.all
-    ['www.google.com', 'makers.tech']
+    if ENV['ENVIRONMENT'] == 'test'
+   connection = PG.connect(dbname: 'bookmark_manager_test')
+   else
+    connection = PG.connect(dbname: 'more_bookmarks')
+   end
+   result = connection.exec("SELECT * FROM bookmarks;")
+   result.map { |bookmark| bookmark['url']}
   end
 end

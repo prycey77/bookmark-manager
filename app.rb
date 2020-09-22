@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require_relative './lib/bookmark'
+require 'pg'
 
 class BookmarkManager < Sinatra::Base
   get '/' do
@@ -7,6 +8,7 @@ class BookmarkManager < Sinatra::Base
   end
 
   get '/bookmarks' do
+    p ENV
     erb :bookmarks
   end
 
