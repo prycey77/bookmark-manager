@@ -1,4 +1,5 @@
 ENV['RACK_ENV'] = 'test'
+ENV['ENVIRONMENT'] = 'test'
 
 require File.join(File.dirname(__FILE__), '..', 'app.rb')
 require 'capybara'
@@ -6,10 +7,18 @@ require 'capybara/rspec'
 require 'rspec'
 require 'simplecov'
 require 'simplecov-console'
+require 'pg'
+require 'setup_test_database'
 
 SimpleCov.start
 SimpleCov.formatter = SimpleCov::Formatter::Console
 Capybara.app = BookmarkManager
+
+RSpec.configure do |config|
+  config.before(:each) do
+    setup_test_database
+  end
+end
 
 RSpec.configure do |config|
 
@@ -25,3 +34,4 @@ RSpec.configure do |config|
   
   config.shared_context_metadata_behavior = :apply_to_host_groups
 end
+
