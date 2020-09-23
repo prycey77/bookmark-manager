@@ -1,5 +1,5 @@
 <a href="/bookmarks/new"> Add Bookmark  </a><br>
 
 <% @bookmarks.each do |bookmark| %>
-<%= bookmark.url %><br>
+<a href="<%= bookmark.url %>"> <%=bookmark.title%></a> <br>
 <% end %>

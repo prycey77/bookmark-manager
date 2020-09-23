@@ -12,6 +12,6 @@ feature 'Adds a new bookmark' do
     fill_in 'title', with: 'ABC'
     fill_in 'url', with: 'http://www.abc.com'
     click_button 'Submit'
-    expect(page).to have_content('http://www.abc.com')
+    expect(page).to have_content('ABC')
   end
 end
