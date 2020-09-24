@@ -7,7 +7,6 @@ class BookmarkManager < Sinatra::Base
   enable :session, :method_override
 
   delete '/bookmarks/:id' do
-    p params
     Bookmark.delete(id: params[:id])
     redirect '/bookmarks'
   end

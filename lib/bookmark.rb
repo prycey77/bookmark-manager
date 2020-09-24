@@ -35,7 +35,8 @@ end
     else
       connection = PG.connect(dbname: 'bookmark_manager')
     end
-    p result = connection.exec("INSERT INTO bookmarks(title, url) VALUES('#{title}', '#{url}') RETURNING id, title, url;")
+     result = connection.exec("INSERT INTO bookmarks(title, url) VALUES('#{title}', '#{url}') RETURNING id, title, url;")
+    p title: result[0]['url'] #s
     Bookmark.new(id: result[0]['id'], title: result[0]['title'], url: result[0]['url'])
   end
 
